@@ -1,18 +1,12 @@
 <template>
-  <div class="page">
-    <top-header></top-header>
-    <router-view></router-view>
-  </div>
+  <div></div>
 </template>
 
 <script lang="ts">
   import { defineComponent, reactive, toRefs, onBeforeMount, onMounted } from 'vue'
-  import TopHeader from './components/top-header/TopHeader.vue'
-
   export default defineComponent({
-    components: {
-      TopHeader
-    },
+    // 点击主页之后显示的整个文章
+    name: 'Article',
     setup() {
       const data = reactive({})
       onBeforeMount(() => {
@@ -27,13 +21,4 @@
     }
   })
 </script>
-<style>
-  body, p {
-    padding: 0;
-    margin: 0;
-  }
-  a {
-    text-decoration: none;
-    color: black;
-  }
-</style>
+<style scoped lang="less"></style>
