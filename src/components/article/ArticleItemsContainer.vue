@@ -1,6 +1,11 @@
 <template>
   <div class="items-container">
-    <article-preview v-for="item in articles" :title="item.title" :date="item.createdAt"></article-preview>
+    <article-preview
+      @click="goArticle(item._id)"
+      v-for="item in articles"
+      :title="item.title"
+      :date="item.createdAt"
+    ></article-preview>
   </div>
 </template>
 
@@ -9,6 +14,8 @@
   import { articleModel } from '../../requests/requests'
   import ArticlePreview from './ArticlePreview.vue'
   import { Article } from '../../models/article'
+  import { useRouter } from 'vue-router'
+
   export default defineComponent({
     name: 'ArticleItemsContainer',
     components: {
@@ -18,12 +25,17 @@
       const data = reactive({
         articles: [] as Array<Article>
       })
+      const router = useRouter()
       onBeforeMount(async () => {
         const res = await articleModel.findAll()
         data.articles = res.data
       })
+      function goArticle(articleId: string) {
+        router.push(`/article/${articleId}`)
+      }
       return {
-        ...toRefs(data)
+        ...toRefs(data),
+        goArticle
       }
     }
   })

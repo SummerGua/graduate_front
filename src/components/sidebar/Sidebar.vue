@@ -32,5 +32,9 @@
     width: 300px;
     top: -50px;
     left: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 </style>

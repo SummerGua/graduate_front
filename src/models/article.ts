@@ -3,4 +3,5 @@ export interface Article {
   content: string
   createdAt: string
   updatedAt: string
+  _id: string
 }

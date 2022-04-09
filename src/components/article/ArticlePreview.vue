@@ -1,7 +1,7 @@
 <template>
   <div class="article-preview">
     <p class="title">
-      <router-link to="about">{{ title }}</router-link>
+      {{ title }}
     </p>
     <p class="date">{{ date }}</p>
   </div>
@@ -22,18 +22,6 @@
         required: true
       }
     },
-    setup() {
-      const data = reactive({})
-      onBeforeMount(() => {
-        //2.组件挂载页面之前执行----onBeforeMount
-      })
-      onMounted(() => {
-        //3.组件挂载到页面之后执行-------onMounted
-      })
-      return {
-        ...toRefs(data)
-      }
-    }
   })
 </script>
 <style scoped>
@@ -42,6 +30,9 @@
     margin: 10px;
     height: 84px;
     position: relative;
+  }
+  .article-preview :hover {
+    cursor: pointer;
   }
   .title {
     font-size: 30px;

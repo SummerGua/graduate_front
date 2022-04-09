@@ -1,27 +1,58 @@
 <template>
   <div>
-    <h1 class="title"></h1>
-    <p></p>
+    <h1 class="title">{{ title }}</h1>
+    <el-icon title="进入编辑" @click="edit(id)" class="edit" :size="40">
+      <edit />
+    </el-icon>
+    <p class="content">{{ content }}</p>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive, toRefs, onBeforeMount, onMounted } from 'vue'
-  export default defineComponent({
-    // 点击主页之后显示的整个文章
-    name: 'Article',
-    setup() {
-      const data = reactive({})
-      onBeforeMount(() => {
-        //2.组件挂载页面之前执行----onBeforeMount
-      })
-      onMounted(() => {
-        //3.组件挂载到页面之后执行-------onMounted
-      })
-      return {
-        ...toRefs(data)
+    import { defineComponent, reactive, toRefs, onBeforeMount, onMounted } from 'vue'
+    import { useRoute } from 'vue-router'
+    import { Edit } from '@element-plus/icons-vue'
+    import { articleModel } from '../../requests/requests'
+
+    export default defineComponent({
+      // 点击主页之后显示的整个文章
+      name: 'Article',
+      components: {
+        Edit
+      },
+      setup() {
+        const data = reactive({
+          title: 'loading',
+          content: 'loading',
+          id: ''
+        })
+        const route = useRoute()
+        onBeforeMount(async () => {
+          const res = await articleModel.findOne(route.params.id as string)
+          data.content = res.data.content
+          data.title = res.data.title
+          data.id = res.data._id
+        })
+
+        function edit(id: string) {
+          console.log(id)
+        }
+        return {
+          ...toRefs(data),
+          edit
+        }
       }
-    }
-  })
+    })
 </script>
-<style scoped lang="less"></style>
+<style scoped>
+  .edit {
+    float: right;
+  }
+  .edit :hover {
+    cursor: pointer;
+  }
+  .content {
+    min-height: 100px;
+    overflow:auto;
+  }
+</style>
