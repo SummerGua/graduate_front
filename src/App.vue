@@ -1,39 +1,61 @@
 <template>
   <div class="page">
     <top-header></top-header>
-    <router-view></router-view>
+
+    <sidebar :class="sidebarShow ? 'sidebarShow' :'sidebarHide'"></sidebar>
+
+    <div id="view-container">
+      <router-view> </router-view>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive, toRefs, onBeforeMount, onMounted } from 'vue'
+  import { defineComponent } from 'vue'
   import TopHeader from './components/top-header/TopHeader.vue'
-
+  import About from './components/About.vue'
+  import Sidebar from './components/sidebar/Sidebar.vue'
+  import { computed, ComputedRef } from '@vue/reactivity'
+  import { useStore } from 'vuex'
   export default defineComponent({
     components: {
-      TopHeader
+      TopHeader,
+      About,
+      Sidebar
     },
     setup() {
-      const data = reactive({})
-      onBeforeMount(() => {
-        //2.组件挂载页面之前执行----onBeforeMount
-      })
-      onMounted(() => {
-        //3.组件挂载到页面之后执行-------onMounted
+      const store = useStore()
+      let sidebarShow: ComputedRef<boolean> = computed(() => {
+        return store.state.sidebarVisibility
       })
       return {
-        ...toRefs(data)
+        sidebarShow
       }
     }
   })
 </script>
 <style>
-  body, p {
+  body,
+  p {
     padding: 0;
     margin: 0;
   }
   a {
     text-decoration: none;
     color: black;
+  }
+  #view-container {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+  .sidebarShow {
+    transform: translateY(120px);
+    transition: transform .35s ease-in-out;
+    -webkit-transition: -webkit-transform .35s ease-in-out;
+  }
+  .sidebarHide {
+    transform: translateY(-120px);
+    transition: transform .35s ease-in-out;
+    -webkit-transition: -webkit-transform .35s ease-in-out;
   }
 </style>

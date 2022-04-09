@@ -9,7 +9,7 @@ export const articleModel = {
       url: "/article"
     })
   },
-  findOne: (id: string) => {
+  findOne: (id: string):AxiosPromise<Array<Article>> => {
     return server({
       method: "get",
       url: `/article/${id}`

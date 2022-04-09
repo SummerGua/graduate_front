@@ -1,6 +1,8 @@
 <template>
-  <h1>{{ msg }}</h1>
-  <p>{{ description }}</p>
+  <div>
+    <h1>{{ msg }}</h1>
+    <p>{{ description }}</p>
+  </div>
 </template>
 
 <script lang="ts">

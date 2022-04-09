@@ -1,6 +1,6 @@
 <template>
   <div class="items-container">
-    <article-preview v-for="item in articles" title="Title" date="2020-4-6"></article-preview>
+    <article-preview v-for="item in articles" :title="item.title" :date="item.createdAt"></article-preview>
   </div>
 </template>
 
@@ -16,7 +16,7 @@
     },
     setup() {
       const data = reactive({
-        articles: [] as Article[]
+        articles: [] as Array<Article>
       })
       onBeforeMount(async () => {
         const res = await articleModel.findAll()
@@ -30,7 +30,7 @@
 </script>
 <style scoped>
   .items-container {
-    max-width: 750px;
+    width: 100%;
     margin: 0 auto;
   }
 </style>

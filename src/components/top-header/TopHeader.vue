@@ -1,6 +1,6 @@
 <template>
   <div class="top-bar">
-    <div class="expand-icon">
+    <div @click="showSidebar" class="expand-icon">
       <el-icon class="expand" :size="30">
         <expand />
       </el-icon>
@@ -12,21 +12,19 @@
 <script lang="ts">
   import { defineComponent, reactive, toRefs, onBeforeMount, onMounted } from 'vue'
   import { Expand } from '@element-plus/icons-vue'
+  import { useStore } from 'vuex'
   export default defineComponent({
     name: 'TopHeader',
     components: {
       Expand
     },
     setup() {
-      const data = reactive({})
-      onBeforeMount(() => {
-        //2.组件挂载页面之前执行----onBeforeMount
-      })
-      onMounted(() => {
-        //3.组件挂载到页面之后执行-------onMounted
-      })
+      const store = useStore()
+      const showSidebar = () => {
+        store.commit("showSidebar")
+      }
       return {
-        ...toRefs(data)
+        showSidebar
       }
     }
   })
@@ -36,13 +34,13 @@
     padding: 0 10px;
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content: space-between;
     height: 55px;
     line-height: 55px;
     border-bottom: 1px solid #dcdfe6;
   }
 
-  .expand-icon :hover{
+  .expand-icon :hover {
     cursor: pointer;
   }
 

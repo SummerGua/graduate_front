@@ -1,8 +1,8 @@
 <template>
   <div class="article-preview">
-    <p class="title"
-      ><router-link to="about">{{ title }}</router-link></p
-    >
+    <p class="title">
+      <router-link to="about">{{ title }}</router-link>
+    </p>
     <p class="date">{{ date }}</p>
   </div>
 </template>
