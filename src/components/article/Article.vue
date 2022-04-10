@@ -10,10 +10,9 @@
 
 <script lang="ts">
     import { defineComponent, reactive, toRefs, onBeforeMount, onMounted } from 'vue'
-    import { useRoute } from 'vue-router'
+    import { useRoute, useRouter } from 'vue-router'
     import { Edit } from '@element-plus/icons-vue'
     import { articleModel } from '../../requests/requests'
-
     export default defineComponent({
       // 点击主页之后显示的整个文章
       name: 'Article',
@@ -34,8 +33,9 @@
           data.id = res.data._id
         })
 
+        const router = useRouter()
         function edit(id: string) {
-          console.log(id)
+          router.push(`/article/editor/${id}`)
         }
         return {
           ...toRefs(data),

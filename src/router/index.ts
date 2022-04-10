@@ -19,6 +19,11 @@ const routes: RouteRecordRaw[] = [
     path: '/article/:id',
     name: 'article',
     component: () => import('../components/article/Article.vue')
+  },
+  {
+    path: '/article/editor/:id',
+    name: 'editor',
+    component: () => import('../components/editor/MarkdownContainer.vue')
   }
 ]
 

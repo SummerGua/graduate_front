@@ -14,5 +14,11 @@ export const articleModel = {
       method: "get",
       url: `/article/${id}`
     })
+  },
+  modifyOne: (id: string):AxiosPromise<Article> => {
+    return server({
+      method: "patch",
+      url: `/article/${id}`
+    })
   }
 }

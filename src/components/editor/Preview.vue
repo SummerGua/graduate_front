@@ -1,11 +1,14 @@
 <template>
-  <div></div>
+  <div>
+    <div>preview</div>
+    <div id="preview"></div>
+  </div>
 </template>
 
 <script lang="ts">
   import { defineComponent } from 'vue'
   export default defineComponent({
-    name: '',
+    name: 'Preview',
   })
 </script>
 <style scoped lang="less"></style>

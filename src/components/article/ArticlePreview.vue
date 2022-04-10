@@ -9,7 +9,7 @@
 
 <script lang="ts">
   // 首页上的预览条目
-  import { defineComponent, reactive, toRefs, onBeforeMount, onMounted } from 'vue'
+  import { defineComponent } from 'vue'
   export default defineComponent({
     name: 'ArticlePreview',
     props: {
