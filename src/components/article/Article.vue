@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent, reactive, toRefs, onBeforeMount, onMounted } from 'vue'
+    import { defineComponent, reactive, toRefs, onBeforeMount } from 'vue'
     import { useRoute, useRouter } from 'vue-router'
     import { Edit } from '@element-plus/icons-vue'
     import { articleModel } from '../../requests/requests'
