@@ -45,7 +45,7 @@
     color: black;
   }
   #view-container {
-    max-width: 750px;
+    max-width: 950px;
     margin: 0 auto;
   }
   .sidebarShow {
