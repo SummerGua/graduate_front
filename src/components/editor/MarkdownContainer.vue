@@ -8,7 +8,9 @@
       <button class="btn" @click="save">保存</button>
     </div>
     <textarea class="textarea" v-model="content" />
-    <preview class="preview"></preview>
+    <div id="previewer1">
+      <preview class="preview"></preview>
+    </div>
   </div>
 </template>
 
@@ -20,6 +22,7 @@
   import VirtualMarkdown from '../../VirtualMarkdown'
   import { ElMessage } from 'element-plus'
   import { useStore } from 'vuex'
+  import hljs from 'highlight.js'
 
   export default defineComponent({
     name: 'MarkdownContainer',
@@ -45,11 +48,23 @@
 
       onMounted(() => {
         render(data.content)
+        document
+          .getElementById('previewer1')
+          ?.querySelectorAll('pre code')
+          .forEach((item) => {
+            hljs.highlightElement(item as HTMLElement)
+          })
       })
 
       watch(data, (newValue, oldValue) => {
         store.commit('changeSaveStatus', false)
         render(newValue.content)
+        document
+          .getElementById('previewer1')
+          ?.querySelectorAll('pre code')
+          .forEach((item) => {
+            hljs.highlightElement(item as HTMLElement)
+          })
       })
 
       async function findOne(): Promise<void> {
@@ -125,7 +140,7 @@
     text-overflow: ellipsis;
   }
   .analysis {
-    width: 200px;
+    width: 240px;
     display: block;
   }
   .preview {

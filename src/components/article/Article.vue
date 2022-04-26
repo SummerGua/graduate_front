@@ -4,17 +4,20 @@
     <el-icon title="进入编辑" @click="toEdit(id)" class="edit" :size="40">
       <edit />
     </el-icon>
-    <p class="content" id="preview"></p>
+    <div id="previewer">
+      <p class="content" id="preview"></p>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
   import { defineComponent, reactive, toRefs, onBeforeMount } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
-  import { Edit } from '@element-plus/icons-vue'
   import { articleModel } from '../../requests/requests'
-  import VirtualMarkdown from '../../VirtualMarkdown'
+  import { Edit } from '@element-plus/icons-vue'
   import { ElMessage } from 'element-plus'
+  import VirtualMarkdown from '../../VirtualMarkdown'
+  import hljs from 'highlight.js'
 
   export default defineComponent({
     // 点击主页的文章之后的预览
@@ -41,6 +44,12 @@
         data.title = res.data.title
         data.id = res.data._id
         vm.render(data.content)
+        document
+          .getElementById('previewer')
+          ?.querySelectorAll('pre code')
+          .forEach((item) => {
+            hljs.highlightElement(item as HTMLElement)
+          })
       })
 
       const router = useRouter()

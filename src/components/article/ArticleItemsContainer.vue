@@ -11,11 +11,11 @@
 
 <script lang="ts">
   import { defineComponent, reactive, toRefs, onBeforeMount, onMounted } from 'vue'
+  import { useRouter } from 'vue-router'
   import { articleModel } from '../../requests/requests'
+  import { ElMessage } from 'element-plus'
   import ArticlePreview from './ArticlePreview.vue'
   import { Article } from '../../models/article'
-  import { useRouter } from 'vue-router'
-  import { ElMessage } from 'element-plus'
   import moment from 'moment'
 
   export default defineComponent({

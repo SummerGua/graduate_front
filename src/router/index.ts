@@ -20,14 +20,6 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../components/auth/SignIn.vue')
   },
   {
-    path: '/about',
-    name: 'about',
-    meta: {
-      auth: true
-    },
-    component: () => import('../components/About.vue')
-  },
-  {
     path: '/article/:id',
     name: 'article',
     meta: {

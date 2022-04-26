@@ -7,18 +7,10 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive, toRefs, onBeforeMount } from 'vue'
+  import { defineComponent } from 'vue'
+
   export default defineComponent({
-    name: 'Sidebar',
-    setup() {
-      const data = reactive({})
-      onBeforeMount(() => {
-        // sidebar请求用户信息
-      })
-      return {
-        ...toRefs(data)
-      }
-    }
+    name: 'Sidebar'
   })
 </script>
 <style scoped>

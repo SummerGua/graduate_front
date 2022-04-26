@@ -10,6 +10,7 @@
 <script lang="ts">
   // 首页上的一条标题+日期
   import { defineComponent } from 'vue'
+
   export default defineComponent({
     name: 'ArticlePreview',
     props: {
@@ -21,7 +22,7 @@
         type: String,
         required: true
       }
-    },
+    }
   })
 </script>
 <style scoped>

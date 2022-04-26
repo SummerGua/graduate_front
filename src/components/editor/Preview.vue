@@ -6,8 +6,9 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue'
+
   export default defineComponent({
-    name: 'Preview',
+    name: 'Preview'
   })
 </script>
 <style scoped lang="less"></style>

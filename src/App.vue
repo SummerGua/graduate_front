@@ -12,15 +12,13 @@
 
 <script lang="ts">
   import { defineComponent, onBeforeMount } from 'vue'
-  import TopHeader from './components/top-header/TopHeader.vue'
-  import About from './components/About.vue'
-  import Sidebar from './components/sidebar/Sidebar.vue'
   import { computed, ComputedRef } from '@vue/reactivity'
   import { useStore } from 'vuex'
+  import TopHeader from './components/top-header/TopHeader.vue'
+  import Sidebar from './components/sidebar/Sidebar.vue'
   export default defineComponent({
     components: {
       TopHeader,
-      About,
       Sidebar
     },
     setup() {
@@ -53,6 +51,16 @@
   a {
     text-decoration: none;
     color: black;
+  }
+  table {
+    background-color: #f3f3f3;
+    width: 100%;
+  }
+  table th {
+    background-color: #b8b7b7d9;
+  }
+  tr:nth-child(odd) {
+    background-color: white;
   }
   #view-container {
     max-width: 950px;

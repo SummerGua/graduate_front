@@ -22,11 +22,12 @@
 </template>
 
 <script lang="ts">
-  import { ElInput, ElButton, ElForm, ElFormItem, ElMessage } from 'element-plus'
-  import { defineComponent, reactive, toRefs, onBeforeMount, onMounted } from 'vue'
+  import { defineComponent, reactive, toRefs } from 'vue'
   import { useRouter } from 'vue-router'
   import { useStore } from 'vuex'
   import { userModel } from '../../requests/requests'
+  import { ElInput, ElButton, ElForm, ElFormItem, ElMessage } from 'element-plus'
+
   export default defineComponent({
     name: '',
     components: {
