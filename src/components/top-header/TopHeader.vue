@@ -1,30 +1,68 @@
 <template>
   <div class="top-bar">
-    <div @click="showSidebar" class="expand-icon">
-      <el-icon class="expand" :size="30">
+    <div class="left-top">
+      <el-icon class="center-icon" @click="showSidebar" :size="30">
         <expand />
       </el-icon>
+      <el-icon class="center-icon" @click="goHome" :size="30">
+        <home-filled />
+      </el-icon>
+      <el-icon class="center-icon" @click="goAdd" :size="30">
+        <plus />
+      </el-icon>
     </div>
-    <div class="avator">summergua</div>
+    <div class="avator">{{ username }}</div>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive, toRefs, onBeforeMount, onMounted } from 'vue'
-  import { Expand } from '@element-plus/icons-vue'
+  import { computed, defineComponent, reactive, toRefs } from 'vue'
+  import { Expand, HomeFilled, Plus } from '@element-plus/icons-vue'
   import { useStore } from 'vuex'
+  import { useRoute, useRouter } from 'vue-router'
+  import { ElMessage } from 'element-plus'
   export default defineComponent({
     name: 'TopHeader',
     components: {
-      Expand
+      Expand,
+      HomeFilled,
+      Plus
     },
     setup() {
       const store = useStore()
+      const router = useRouter()
+      const route = useRoute()
       const showSidebar = () => {
-        store.commit("showSidebar")
+        store.commit('showSidebar')
       }
+      const goHome = () => {
+        if (route.name === 'home') {
+          ElMessage.warning('已经在首页啦')
+          return
+        }
+        if (store.state.haveSaved === false) {
+          ElMessage.warning('请先保存内容')
+          return
+        }
+        router.push('/home')
+      }
+      const goAdd = () => {
+        if (store.state.haveSaved === false) {
+          ElMessage.warning('请先保存内容')
+          return
+        }
+        router.push('/article/editor/null')
+      }
+
+      const username = computed(() => {
+        return store.state.username
+      })
+
       return {
-        showSidebar
+        showSidebar,
+        goHome,
+        goAdd,
+        username
       }
     }
   })
@@ -40,14 +78,17 @@
     border-bottom: 1px solid #dcdfe6;
   }
 
-  .expand-icon :hover {
-    cursor: pointer;
+  .left-top {
+    display: flex;
+    flex-direction: row;
   }
 
-  .expand-icon {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .center-icon {
+    margin: auto 10px;
+  }
+
+  .center-icon :hover {
+    cursor: pointer;
+    color: grey;
   }
 </style>

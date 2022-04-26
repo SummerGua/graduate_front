@@ -10,6 +10,7 @@ export default defineConfig({
     ElementPlus(),
   ],
   server: {
+    port: 3001,
     fs: {
       strict: false
     }

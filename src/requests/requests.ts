@@ -15,7 +15,12 @@ export const articleModel = {
       url: `/article/${id}`
     })
   },
-  modifyOne: (id: string, title: string, content: string, updatedAt: Date): AxiosPromise<Article> => {
+  modifyOne: (
+    id: string,
+    title: string,
+    content: string,
+    updatedAt: Date
+  ): AxiosPromise<Article> => {
     return server({
       method: 'patch',
       url: `/article/${id}`,
@@ -26,7 +31,13 @@ export const articleModel = {
       }
     })
   },
-  createOne: (title: string, content: string, createdAt: Date, author: string) => {
+  createOne: (
+    title: string,
+    content: string,
+    createdAt: Date,
+    updatedAt: Date,
+    author: string
+  ): AxiosPromise<Article> => {
     return server({
       method: 'post',
       url: '/article/create',
@@ -34,6 +45,7 @@ export const articleModel = {
         title,
         content,
         createdAt,
+        updatedAt,
         author
       }
     })
@@ -42,6 +54,31 @@ export const articleModel = {
     return server({
       method: 'delete',
       url: `/article/${id}`
+    })
+  }
+}
+
+export const userModel = {
+  signin: (username: string, email: string, password: string) => {
+    return server({
+      method: 'post',
+      url: '/auth/signin',
+      data: {
+        username,
+        email,
+        password
+      }
+    })
+  },
+  signup: (username: string, email: string, password: string) => {
+    return server({
+      method: 'post',
+      url: '/auth/signup',
+      data: {
+        username,
+        email,
+        password
+      }
     })
   }
 }

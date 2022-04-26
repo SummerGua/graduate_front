@@ -2,7 +2,7 @@
   <div class="page">
     <top-header></top-header>
 
-    <sidebar :class="sidebarShow ? 'sidebarShow' :'sidebarHide'"></sidebar>
+    <sidebar :class="sidebarShow ? 'sidebarShow' : 'sidebarHide'"></sidebar>
 
     <div id="view-container">
       <router-view> </router-view>
@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue'
+  import { defineComponent, onBeforeMount } from 'vue'
   import TopHeader from './components/top-header/TopHeader.vue'
   import About from './components/About.vue'
   import Sidebar from './components/sidebar/Sidebar.vue'
@@ -28,6 +28,16 @@
       let sidebarShow: ComputedRef<boolean> = computed(() => {
         return store.state.sidebarVisibility
       })
+
+      onBeforeMount(() => {
+        const token = localStorage.getItem('token')
+        const username = localStorage.getItem('username')
+        if (token) {
+          store.commit('changeSignFlag', true)
+          store.commit('setUsername', username)
+        }
+      })
+
       return {
         sidebarShow
       }
@@ -50,12 +60,12 @@
   }
   .sidebarShow {
     transform: translateY(120px);
-    transition: transform .35s ease-in-out;
-    -webkit-transition: -webkit-transform .35s ease-in-out;
+    transition: transform 0.35s ease-in-out;
+    -webkit-transition: -webkit-transform 0.35s ease-in-out;
   }
   .sidebarHide {
     transform: translateY(-120px);
-    transition: transform .35s ease-in-out;
-    -webkit-transition: -webkit-transform .35s ease-in-out;
+    transition: transform 0.35s ease-in-out;
+    -webkit-transition: -webkit-transform 0.35s ease-in-out;
   }
 </style>

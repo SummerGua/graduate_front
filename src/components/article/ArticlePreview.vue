@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-  // 首页上的预览条目
+  // 首页上的一条标题+日期
   import { defineComponent } from 'vue'
   export default defineComponent({
     name: 'ArticlePreview',

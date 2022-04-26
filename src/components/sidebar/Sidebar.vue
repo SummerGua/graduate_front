@@ -2,17 +2,18 @@
   <div class="sidebar">
     <!-- <img /> -->
     <p class="username">summergua</p>
-    <p>飞流直下三千尺，疑是银河落九天</p>
+    <p>世界上只有一种真正的英雄主义，那就是看清生活的真相之后，依然热爱生活。</p>
   </div>
 </template>
 
 <script lang="ts">
   import { defineComponent, reactive, toRefs, onBeforeMount } from 'vue'
   export default defineComponent({
-    name: '',
-    setup() { 
+    name: 'Sidebar',
+    setup() {
       const data = reactive({})
-      onBeforeMount(() => { // sidebar请求用户信息
+      onBeforeMount(() => {
+        // sidebar请求用户信息
       })
       return {
         ...toRefs(data)
