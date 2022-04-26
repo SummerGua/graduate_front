@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive, toRefs, onBeforeMount } from 'vue'
+  import { defineComponent, reactive, toRefs, onMounted } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
   import { articleModel } from '../../requests/requests'
   import { Edit } from '@element-plus/icons-vue'
@@ -32,9 +32,8 @@
         id: ''
       })
       const route = useRoute()
-      const vm = new VirtualMarkdown('preview')
 
-      onBeforeMount(async () => {
+      onMounted(async () => {
         const res = await articleModel.findOne(route.params.id as string)
         if (res.status !== 200) {
           ElMessage.warning('出了点问题')
@@ -43,6 +42,7 @@
         data.content = res.data.content
         data.title = res.data.title
         data.id = res.data._id
+        const vm = new VirtualMarkdown('preview')
         vm.render(data.content)
         document
           .getElementById('previewer')
