@@ -62,6 +62,15 @@
   tr:nth-child(odd) {
     background-color: white;
   }
+  blockquote {
+    margin-left: 10px;
+  }
+  blockquote p {
+    border-left: 3px solid #ccc;
+    background-color: #f1f1f1;
+    padding: 10px 10px 10px 15px;
+    overflow: auto;
+  }
   #view-container {
     max-width: 950px;
     margin: 0 auto;
